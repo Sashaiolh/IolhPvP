@@ -34,13 +34,9 @@ public class PlayerLogoutEventHandler {
         // Завершаем боевой режим при отключении игрока
         if (PlayerAttackEventHandler.playersInCombat.contains(playerUUID)) {
             CombatTimers.stopCombatTimer(playerUUID, null);
+
+            PlayerUtils.dropAllItems(player);
+            PlayerUtils.killPlayer(player);
         }
-
-        PlayerUtils.dropAllItems(player);
-
-        PlayerUtils.killPlayer(player);
-
-
-        event.setCanceled(true);
     }
 }
